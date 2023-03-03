@@ -1,0 +1,38 @@
+package_sets:
+   - github: 2maz/simula-comphy
+
+layout:
+   - simula-comphy
+
+# The layout section specifies what to build, and where to build it (as a
+# subdirectory of the root installation directory).
+# layout:
+#   - tools:
+#     - rock.toolchain
+#
+# Single packages can also be selected instead of whole package sets. The
+# package names are interpreted as a regular expression, so it is possible to
+# do:
+#
+# layout:
+#   - tools:
+#     - typelib
+#     - utilmm
+#     - orocos/
+#
+#
+# exclude_packages:
+#   - orocos/
+
+# Ignoring packages: same principle than package exclusion, but this time the
+# packages are considered to be installed and up-to-date. This is useful if you
+# want to use an already installed software package.
+#
+# For instance, let's assume the orocos/rtt is already installed on your
+# machine. You would then simply do:
+#
+# ignored_packages:
+#   - rtt
+#
+
+
