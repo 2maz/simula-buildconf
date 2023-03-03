@@ -1,8 +1,8 @@
 package_sets:
-   - github: 2maz/simula-comphy
+   - github: 2maz/simula-package_set
 
 layout:
-   - simula-comphy
+   - simula-computational-physiology
 
 # The layout section specifies what to build, and where to build it (as a
 # subdirectory of the root installation directory).

@@ -2,7 +2,7 @@
 
 CONF_URL=${CONF_URL:=https://github.com/2maz/simula-buildconf.git}
 RUBY=ruby
-AUTOPROJ_BOOTSTRAP_URL=http://rock-robotics.org/master/autoproj_bootstrap
+AUTOPROJ_BOOTSTRAP_URL=https://raw.githubusercontent.com/rock-core/autoproj/fix_bootstrap/bin/autoproj_bootstrap
 BOOTSTRAP_ARGS=
 
 if test -n "$1" && test "$1" != "dev" && test "$1" != "localdev"; then
