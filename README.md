@@ -1,4 +1,13 @@
-# Configuration of your autoproj build
+# Configuration of simula-buildconf
+
+
+```
+mkdir new_project
+wget https://raw.githubusercontent.com/2maz/simula-buildconf/main/bootstrap.sh
+
+./bootstrap.sh
+```
+
 
 ## Directory structure of autoproj/
 

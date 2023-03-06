@@ -69,7 +69,13 @@ do
     esac
 done
 
-$RUBY autoproj_bootstrap $@ git $GET_REPO push_to=$PUSH_TO $BOOTSTRAP_ARGS
+GEMFILE_DEV=Gemfile.autoproj-dev
+echo "source 'https://rubygems.org'" > $GEMFILE_DEV
+echo "gem 'autobuild', git: 'https://github.com/2maz/autobuild', branch: 'master'" >> $GEMFILE_DEV
+echo "gem 'autoproj', git: 'https://github.com/rock-core/autoproj', branch: 'fix_bootstrap'" >> $GEMFILE_DEV
+
+
+$RUBY autoproj_bootstrap --gemfile=$GEMFILE_DEV $@ git $GET_REPO push_to=$PUSH_TO $BOOTSTRAP_ARGS
 
 if test "x$@" != "xlocaldev"; then
     $SHELL -c '. $PWD/env.sh; autoproj update; autoproj osdeps; autoproj build'
