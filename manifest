@@ -1,8 +1,10 @@
 package_sets:
    - github: 2maz/simula-package_set
+   - github: 2maz/fenics-package_set
 
 layout:
    - simula-computational-physiology
+   - fenics
 
 # The layout section specifies what to build, and where to build it (as a
 # subdirectory of the root installation directory).
