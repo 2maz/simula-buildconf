@@ -1,0 +1,6 @@
+---
+prefer_indep_over_os_packages: false
+osdeps_mode: all
+apt_dpkg_update: true
+GITHUB: http
+USE_PYTHON: true

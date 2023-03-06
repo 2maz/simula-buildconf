@@ -5,19 +5,11 @@ RUBY=ruby
 AUTOPROJ_BOOTSTRAP_URL=https://raw.githubusercontent.com/rock-core/autoproj/fix_bootstrap/bin/autoproj_bootstrap
 BOOTSTRAP_ARGS=
 
-if test -n "$1" && test "$1" != "dev" && test "$1" != "localdev"; then
-    RUBY=$1
-    shift 1
-    RUBY_USER_SELECTED=1
-fi
-
 set -e
 
 if ! which $RUBY > /dev/null 2>&1; then
-    echo "cannot find the ruby executable. On Ubuntu 16.04 and above, you should run"
-    echo "  sudo apt-get install ruby"
-    echo "or on Ubuntu 14.04"
-    echo "  sudo apt-get install ruby2.0"
+    echo "cannot find the ruby executable. On Debian or Ubuntu you should run"
+    echo "  sudo apt install ruby ruby-dev"
     exit 1
 fi
 
@@ -55,19 +47,19 @@ fi
 CONF_URL=${CONF_URL#*//}
 CONF_SITE=${CONF_URL%%/*}
 CONF_REPO=${CONF_URL#*/}
-
+GET_REPO=https://$CONF_SITE/$CONF_REPO
 PUSH_TO=git@$CONF_SITE:$CONF_REPO
-until [ -n "$GET_REPO" ]
-do
-    echo -n "Which protocol do you want to use to access $CONF_REPO on $CONF_SITE? [git|ssh|http] (default: http) "
-    read ANSWER
-    ANSWER=`echo $ANSWER | tr "[:upper:]" "[:lower:]"`
-    case "$ANSWER" in
-        "ssh") GET_REPO=git@$CONF_SITE:$CONF_REPO ;;
-        "http"|"") GET_REPO=https://$CONF_SITE/$CONF_REPO ;;
-        "git") GET_REPO=git://$CONF_SITE/$CONF_REPO ;;
-    esac
-done
+
+#until [ -n "$GET_REPO" ]
+#do
+#    echo -n "Which protocol do you want to use to access $CONF_REPO on $CONF_SITE? [git|ssh|http] (default: http) "
+#    read ANSWER
+#    ANSWER=`echo $ANSWER | tr "[:upper:]" "[:lower:]"`
+#    case "$ANSWER" in
+#        "ssh") GET_REPO=git@$CONF_SITE:$CONF_REPO ;;
+#        "git") GET_REPO=git://$CONF_SITE/$CONF_REPO ;;
+#    esac
+#done
 
 GEMFILE_DEV=Gemfile.autoproj-dev
 echo "source 'https://rubygems.org'" > $GEMFILE_DEV
