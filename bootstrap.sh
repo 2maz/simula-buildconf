@@ -2,7 +2,7 @@
 
 CONF_URL=${CONF_URL:=https://github.com/2maz/simula-buildconf.git}
 RUBY=ruby
-AUTOPROJ_BOOTSTRAP_URL=https://raw.githubusercontent.com/rock-core/autoproj/fix_bootstrap/bin/autoproj_bootstrap
+AUTOPROJ_BOOTSTRAP_URL=https://raw.githubusercontent.com/2maz/autoproj/master/bin/autoproj_bootstrap
 BOOTSTRAP_ARGS=
 
 set -e
