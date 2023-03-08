@@ -2,11 +2,20 @@ FROM ubuntu:22.04
 
 MAINTAINER 2maz "https://github.com/2maz"
 
+ARG PKG_BRANCH=main
+RUN echo "Building for branch: $PKG_BRANCH"
+
 RUN apt update
 RUN apt upgrade -y
+
 RUN export DEBIAN_FRONTEND=noninteractive; apt install -y ruby ruby-dev wget tzdata locales g++ autotools-dev make cmake sudo git python3 pkg-config
-RUN echo "Europe/Berlin" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata
-RUN export LANGUAGE=de_DE.UTF-8; export LANG=de_DE.UTF-8; export LC_ALL=de_DE.UTF-8; locale-gen de_DE.UTF-8; DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+
+ENV LANG en_GB.UTF-8
+ENV LANGUAGE en_GB:en_US:en
+RUN locale-gen $LANG
+
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+RUN echo "Europe/Oslo" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata
 
 RUN useradd -ms /bin/bash docker
 RUN echo "docker ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -14,9 +23,6 @@ RUN echo "docker ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 USER docker
 WORKDIR /home/docker
 
-ENV LANG de_DE.UTF-8
-ENV LANG de_DE:de
-ENV LC_ALL de_DE.UTF-8
 ENV SHELL /bin/bash
 
 RUN git config --global user.email "roehr@simula.no"

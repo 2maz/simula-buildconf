@@ -5,13 +5,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
         id: current_branch
 
       - name: Build Docker
-        run: docker build -t simula/builconf -f Dockerfile . --build-arg PKG_BRANCH=${{ steps.current_branch.outputs.branch }}
+        run: docker build -t simula/buildconf -f Dockerfile . --build-arg PKG_BRANCH=${{ steps.current_branch.outputs.branch }}
 
