@@ -1,7 +1,11 @@
 name: test
-on: [push]
+on:
+  push:
+  pull_request:
+  schedule:
+    - '0 3 * * 7' # every sunday at 3
 jobs:
-  unittests:
+  docker_build:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
